@@ -1,0 +1,98 @@
+# Poems About the Three-Tier Application
+
+## A Poem About the Three-Tier Application
+
+Three layers dance in harmony,
+A modern architecture symphony,
+From browser to database deep,
+Where all the precious data sleep.
+
+**The Frontend Sings**
+Next.js and React take the stage,
+With Tailwind CSS, a colorful page,
+Port 3000 glows with UI delight,
+A task manager shining bright.
+
+**The API Conducts**
+Express on Node, port 3001 waits,
+A REST conductor at the gates,
+GET and POST in perfect time,
+Each endpoint plays its paradigm.
+
+**The Database Holds**
+PostgreSQL, steady and true,
+Seventeen versions, forever new,
+In Docker's embrace, it persists,
+No data lost, no task dismissed.
+
+**The Orchestration**
+Docker Compose brings them near,
+Four services, crystal clear,
+Postgres, migrate, api, web,
+A flowing, interconnected web.
+
+**From Local to Cloud**
+On laptops first, they dance and play,
+Then Terraform shows the way,
+To Google Cloud they ascend,
+Cloud Run and Cloud SQL blend.
+
+**A Task Manager's Tale**
+Simple yet profound, it shows,
+How modern architecture flows,
+Three tiers working as one,
+A reference implementation done.
+
+---
+
+*A tribute to the example-three-tier-application repository—
+where frontend, API, and database unite in elegant design.*
+
+---
+
+## The Journey of a Task
+
+A user clicks, a task is born,
+From morning light to evening morn,
+Through layers it travels, swift and true,
+A journey that the three-tier knew.
+
+**The Click**
+In the browser, fingers dance,
+A title typed, a second glance,
+The frontend captures every word,
+A request sent, a signal heard.
+
+**The Network Call**
+Through the wire, the data flies,
+To the API, where logic lies,
+Express receives with open arms,
+Validates against all harms.
+
+**The Database Speaks**
+PostgreSQL listens, understands,
+Stores the task in steady hands,
+A row inserted, clean and bright,
+The database holds it tight.
+
+**The Response**
+Back through the layers, swift return,
+The frontend waits, eager to learn,
+The task appears upon the screen,
+A seamless flow, a sight serene.
+
+**The Completion**
+When checked complete, the cycle turns,
+The database updates, the API learns,
+The frontend glows with checkmark true,
+A three-tier dance, forever new.
+
+**The Wisdom**
+In this simple task we see,
+The power of architecture's key,
+Three tiers working as designed,
+A harmony of code and mind.
+
+---
+
+*A celebration of the elegant simplicity and power of three-tier application design.*
