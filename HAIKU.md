@@ -1,0 +1,5 @@
+# Haiku
+
+Code flows like water,
+Debugging through the night sky,
+Dawn brings new insight.
