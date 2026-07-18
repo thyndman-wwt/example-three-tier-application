@@ -18,6 +18,78 @@ Browser → Web (Next.js :3000) → API (Express :3001) → PostgreSQL
 
 The app is a simple task manager (to-do list) that demonstrates how the three tiers communicate.
 
+## Local Development
+
+### Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker Engine + Compose plugin)
+- Git
+
+### Getting started
+
+1. **Clone the repository** (if you haven't already):
+   ```bash
+   git clone https://github.com/thyndman-wwt/example-three-tier-application.git
+   cd example-three-tier-application
+   ```
+
+2. **Start the application stack** with Docker Compose:
+   ```bash
+   docker compose up --build
+   ```
+
+   This command builds and starts four services in order:
+   - **postgres** — PostgreSQL 17 database (waits until healthy)
+   - **migrate** — runs `node-pg-migrate up` to apply schema migrations, then exits
+   - **api** — Express API on port 3001 (internal only)
+   - **web** — Next.js frontend on port 3000 (exposed to host)
+
+3. **Open the application** in your browser:
+   - Navigate to [http://localhost:3000](http://localhost:3000)
+   - You should see the task manager application
+
+### Development workflow
+
+**Rebuild after code changes:**
+```bash
+docker compose up --build
+```
+
+**View logs from all services:**
+```bash
+docker compose logs -f
+```
+
+**View logs from a specific service:**
+```bash
+docker compose logs -f web
+docker compose logs -f api
+docker compose logs -f postgres
+```
+
+**Stop the application** (keeps the database volume):
+```bash
+docker compose down
+```
+
+**Stop and delete all data** (including the database):
+```bash
+docker compose down -v
+```
+
+### API endpoints
+
+The API is not exposed directly to the host, but you can reach it through the web container or by temporarily mapping its port.
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/health` | Health check |
+| GET | `/tasks` | List all tasks |
+| POST | `/tasks` | Create a task (`{ "title": "..." }`) |
+| PATCH | `/tasks/:id` | Update a task (`{ "completed": true }` or `{ "title": "..." }`) |
+
+To test the API directly, you can temporarily expose the API port by modifying `docker-compose.yml` to add `ports: ["3001:3001"]` under the `api` service, then restart with `docker compose up --build`.
+
 ## Running locally with Docker Compose
 
 ### Prerequisites
@@ -129,4 +201,4 @@ DATABASE_URL=postgres://app:app@localhost:5432/app npx node-pg-migrate up
 DATABASE_URL=postgres://app:app@localhost:5432/app npx node-pg-migrate down
 ```
 
-When running via Docker Compose the `migrate` service handles this automatically on startup.
+When running via Docker Compose the `migrate` service handles migrations automatically.
