@@ -1,14 +1,14 @@
 # Contributing
 
-Thank you for your interest in contributing to this project! This guide will help you get the application running locally and understand how to work with database migrations.
+Thank you for your interest in contributing to this project!
 
-## Running the App Locally
+## Getting Started
 
 ### Prerequisites
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker Engine + Compose plugin)
 
-### Start the Application
+### Running Locally
 
 To start all services (PostgreSQL, API, and web frontend):
 
@@ -16,65 +16,44 @@ To start all services (PostgreSQL, API, and web frontend):
 docker compose up --build
 ```
 
-This command will:
-1. Start a PostgreSQL 17 database
-2. Run database migrations automatically
-3. Start the Express API on port 3001 (internal only)
-4. Start the Next.js frontend on port 3000
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-Once running, open [http://localhost:3000](http://localhost:3000) in your browser.
+## Making Changes
 
-### Stop the Application
+1. Create a new branch for your changes:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-```bash
-# Stop containers (keeps the database volume)
-docker compose down
+2. Make your changes and test them locally with `docker compose up --build`
 
-# Stop and delete all data
-docker compose down -v
-```
+3. Commit your changes with clear, descriptive messages:
+   ```bash
+   git commit -m "Brief description of your changes"
+   ```
 
-### Rebuild After Code Changes
+## Opening a Pull Request
 
-```bash
-docker compose up --build
-```
+1. Push your branch to GitHub:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
 
-## Database Migrations
+2. Go to the [repository on GitHub](https://github.com/thyndman-wwt/example-three-tier-application)
 
-Migrations are managed using [node-pg-migrate](https://salsita.github.io/node-pg-migrate/) and are located in `src/db/migrations/`.
+3. Click the **"New pull request"** button
 
-### Running Migrations
+4. Select your branch and provide:
+   - A clear title describing your changes
+   - A description of what you changed and why
 
-When using Docker Compose, migrations run automatically during startup via the `migrate` service. However, you can also run them manually:
-
-```bash
-# Apply all pending migrations
-cd src/db
-DATABASE_URL=postgres://app:app@localhost:5432/app npx node-pg-migrate up
-
-# Roll back the last migration
-DATABASE_URL=postgres://app:app@localhost:5432/app npx node-pg-migrate down
-```
-
-### Creating a New Migration
-
-To create a new migration file:
-
-```bash
-cd src/db
-npx node-pg-migrate create <migration_name>
-```
-
-This will create a new migration file in `src/db/migrations/` that you can edit to define your schema changes.
+5. Submit the pull request for review
 
 ## Project Structure
 
-- **`src/web/`** — Next.js frontend (React 19, Tailwind CSS)
+- **`src/web/`** — Next.js frontend
 - **`src/api/`** — Express REST API
 - **`src/db/`** — Database migrations
 - **`src/infrastructure/`** — Terraform configuration for GCP deployment
 
-## Questions?
-
-Refer to the [README.md](README.md) for more detailed information about the architecture, API endpoints, and deployment to GCP.
+For more details, see [README.md](README.md).
