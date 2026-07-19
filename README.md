@@ -207,6 +207,8 @@ When running via Docker Compose the `migrate` service handles migrations automat
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
 
+Maintained by the team.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
