@@ -48,6 +48,11 @@ The app is a simple task manager (to-do list) that demonstrates how the three ti
    - Navigate to [http://localhost:3000](http://localhost:3000)
    - You should see the task manager application
 
+4. **Stop the stack** when done:
+   ```bash
+   docker compose down
+   ```
+
 ### Development workflow
 
 **Rebuild after code changes:**
