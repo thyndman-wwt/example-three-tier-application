@@ -38,8 +38,8 @@ The app is a simple task manager (to-do list) that demonstrates how the three ti
    docker compose up --build
    ```
 
-   This command builds and starts four services in order:
-   - **postgres** — PostgreSQL 17 database (waits until healthy)
+   This command builds and starts four services:
+   - **postgres** — PostgreSQL 17 database (port 5432, internal only)
    - **migrate** — runs `node-pg-migrate up` to apply schema migrations, then exits
    - **api** — Express API on port 3001 (internal only)
    - **web** — Next.js frontend on port 3000 (exposed to host)
@@ -89,54 +89,6 @@ The API is not exposed directly to the host, but you can reach it through the we
 | PATCH | `/tasks/:id` | Update a task (`{ "completed": true }` or `{ "title": "..." }`) |
 
 To test the API directly, you can temporarily expose the API port by modifying `docker-compose.yml` to add `ports: ["3001:3001"]` under the `api` service, then restart with `docker compose up --build`.
-
-## Running locally with Docker Compose
-
-### Prerequisites
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker Engine + Compose plugin)
-
-### Start the stack
-
-```bash
-docker compose up --build
-```
-
-This starts four services in order:
-
-1. **postgres** — PostgreSQL 17 database, waits until healthy
-2. **migrate** — runs `node-pg-migrate up` to apply schema migrations, then exits
-3. **api** — Express API on port 3001 (internal only)
-4. **web** — Next.js frontend on port 3000 (exposed to host)
-
-Once running, open [http://localhost:3000](http://localhost:3000).
-
-### Stop and clean up
-
-```bash
-# Stop containers (keeps the postgres_data volume)
-docker compose down
-
-# Stop and delete all data
-docker compose down -v
-```
-
-### Rebuild after code changes
-
-```bash
-docker compose up --build
-```
-
-### API endpoints
-
-The API is not exposed directly, but you can reach it through the web container or by temporarily mapping its port:
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/health` | Health check |
-| GET | `/tasks` | List all tasks |
-| POST | `/tasks` | Create a task (`{ "title": "..." }`) |
-| PATCH | `/tasks/:id` | Update a task (`{ "completed": true }` or `{ "title": "..." }`) |
 
 ## Project structure
 
