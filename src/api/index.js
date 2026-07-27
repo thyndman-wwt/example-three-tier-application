@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Constants for validation
-const MAX_TITLE_LENGTH = 255;
+const MAX_TITLE_LENGTH = 120;
 
 app.use(express.json());
 
