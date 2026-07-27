@@ -4,6 +4,9 @@ const db = require('./db');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Constants for validation
+const MAX_TITLE_LENGTH = 120;
+
 app.use(express.json());
 
 app.get('/health', (_req, res) => {
@@ -24,12 +27,28 @@ app.get('/tasks', async (_req, res, next) => {
 app.post('/tasks', async (req, res, next) => {
   try {
     const { title } = req.body;
-    if (!title || typeof title !== 'string' || !title.trim()) {
+    
+    // Validate title is provided and is a string
+    if (!title || typeof title !== 'string') {
       return res.status(400).json({ error: 'title is required' });
     }
+    
+    // Validate title is not empty or whitespace-only
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) {
+      return res.status(400).json({ error: 'title cannot be empty' });
+    }
+    
+    // Validate title is not too long
+    if (trimmedTitle.length > MAX_TITLE_LENGTH) {
+      return res.status(400).json({ 
+        error: `title cannot exceed ${MAX_TITLE_LENGTH} characters` 
+      });
+    }
+    
     const { rows } = await db.query(
       'INSERT INTO tasks (title) VALUES ($1) RETURNING *',
-      [title.trim()]
+      [trimmedTitle]
     );
     res.status(201).json(rows[0]);
   } catch (err) {
